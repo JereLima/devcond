@@ -5,7 +5,7 @@ Esse app faz parte da formação de React native B7Web, e originalmente feito em
 ## Qual o desafio inicial?
 
 Meu objetivo e criar uma versão totalmente em Typescript e adicionar testes.
-A api usada será a do Cursos
+A api usada será a do Curso
 
 ## O que usaremos?
 
