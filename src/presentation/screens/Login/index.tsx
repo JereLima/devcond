@@ -1,37 +1,59 @@
-import React from 'react';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import styled from 'styled-components/native';
+import React, {useRef} from 'react';
+import {Alert, TextInput} from 'react-native';
 import {LoginScreenProps} from '../../../infra/navigation/types';
-import {useAppStore} from '../../../infra/store/useAppStore';
-import {Text} from 'react-native';
+import {Logo} from '../../assets/icons';
+import {MyButton, MyButtonOutLined} from '../../components/MyButton';
+import MyInput from '../../components/MyInput';
+import MyScreen from '../../components/MyScreen';
+import MySpacer from '../../components/MySpacer';
+import * as S from './styles';
 
 const LoginScreen: React.FC<LoginScreenProps> = ({navigation, route}) => {
-  const user = useAppStore().user;
-  const property = useAppStore().property;
-  const token = useAppStore().token;
+  const passwordRef = useRef<TextInput | null>(null);
+
+  const handleNavigationHome = () => {
+    navigation.navigate('Profile');
+  };
+
+  const handleNavigationRegister = () => {
+    navigation.navigate('Register');
+  };
 
   return (
-    <SafeArea>
-      <Container>
-        <Text>{user.email}</Text>
-        <Text>{user.name}</Text>
-        <Text>{user.photoUrl}</Text>
-        <Text>{token}</Text>
-        <Text>{property.unity}</Text>
-        <Text>{property.address}</Text>
-      </Container>
-    </SafeArea>
+    <MyScreen>
+      <S.KeyboardAvoiding>
+        <S.Container>
+          <S.ContainerLogo>
+            <S.Logo resizeMode="contain" source={Logo} />
+          </S.ContainerLogo>
+          <MySpacer height={50} />
+          <MyInput
+            placeholder="Email"
+            onEndEditing={() => passwordRef.current?.focus()}
+          />
+          <MySpacer />
+          <MyInput placeholder="Senha" ref={passwordRef} />
+          <MySpacer />
+          <MyButton
+            bgColor="pink"
+            title="Entrar"
+            onPress={handleNavigationHome}
+          />
+          <MySpacer height={30} />
+
+          <MyButtonOutLined
+            bgColor="pink"
+            title="Registrar"
+            onPress={handleNavigationRegister}
+          />
+          <MySpacer height={30} />
+          <S.PrivacyPolicies onPress={() => Alert.alert('Teste')}>
+            Politicas de privacidade
+          </S.PrivacyPolicies>
+        </S.Container>
+      </S.KeyboardAvoiding>
+    </MyScreen>
   );
 };
 
 export default LoginScreen;
-
-export const SafeArea = styled(SafeAreaView)`
-  flex: 2;
-  background-color: ${({theme}) => theme.colors.shape_dark};
-`;
-
-export const Container = styled.View`
-  flex: 2;
-  background-color: ${({theme}) => theme.colors.shape};
-`;

@@ -1,22 +1,23 @@
+import {RFValue} from 'react-native-responsive-fontsize';
+
 const customTheme = {
   colors: {
-    header: '#000',
+    bg_primary: '#F0F0F0',
+    text: '#222',
+    text_soft: '#333',
 
-    background_primary: '#F4F5F6',
-    background_secondary: '#FFFFFF',
-
-    text: '#7A7A80',
-    text_detail: '#AEAEB3',
-    title: '#47474D',
+    bg_input: '#FFFF',
 
     line: '#EBEBF0',
 
-    main: '#DC1637',
+    main: '#9DC4D7',
     main_light: '#FDEDEF',
-    success: '#03b252',
+    success: '#C4D77B',
 
     shape: '#E1E1E8',
     shape_dark: '#29292E',
+
+    text_button: '#FFFF',
   },
 
   //   fonts: {
@@ -27,19 +28,12 @@ const customTheme = {
   //     secondary_600: 'Archivo_600SemiBold',
   //   },
 
-  //   sizes: {
-  //     padding: RFValue(8),
-  //     radius: RFValue(8),
-  //     screenPadding: RFValue(16),
-  //     fonts: {
-  //       h1: RFValue(22),
-  //       h2: RFValue(20),
-  //       h3: RFValue(18),
-  //       title: RFValue(16),
-  //       subtitle: RFValue(14),
-  //       paragraph: RFValue(12),
-  //     },
-  //   },
+  sizes: {
+    paddingScreen: RFValue(16),
+    radius: RFValue(12),
+    F16: RFValue(16),
+    F18: RFValue(18),
+  },
 };
 
 export default customTheme;
