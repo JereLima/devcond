@@ -31,6 +31,7 @@ const customTheme = {
   sizes: {
     paddingScreen: RFValue(16),
     radius: RFValue(12),
+    F14: RFValue(14),
     F16: RFValue(16),
     F18: RFValue(18),
   },
