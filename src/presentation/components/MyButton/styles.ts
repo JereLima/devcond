@@ -9,6 +9,7 @@ type Default = {
   bgColor?: string;
   color?: string;
   fontSize?: number;
+  bordersRadius?: boolean;
 };
 
 export const Button = styled(TouchableOpacity)<Default>`
@@ -16,7 +17,8 @@ export const Button = styled(TouchableOpacity)<Default>`
   align-items: center;
   justify-content: center;
   min-height: 46px;
-  border-radius: ${({theme}) => theme.sizes.radius}px;
+  border-radius: ${({theme, bordersRadius}) =>
+    bordersRadius ? 0 : theme.sizes.radius}px;
 `;
 
 export const Text = styled.Text<Default>`

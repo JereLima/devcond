@@ -8,11 +8,16 @@ type Ref = TouchableOpacity;
 type MyButtonProps = {
   bgColor?: string;
   title: string;
+  borderRadius?: boolean;
 } & TouchableOpacityProps;
 
 export const MyButton = forwardRef<Ref, MyButtonProps>(
-  ({bgColor, title, ...props}, ref) => (
-    <S.Button activeOpacity={0.6} ref={ref} {...props}>
+  ({bgColor, title, borderRadius, ...props}, ref) => (
+    <S.Button
+      activeOpacity={0.6}
+      ref={ref}
+      bordersRadius={borderRadius}
+      {...props}>
       <S.Text>{title}</S.Text>
     </S.Button>
   ),
