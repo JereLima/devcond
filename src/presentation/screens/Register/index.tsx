@@ -1,9 +1,9 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
-import {LoginScreenProps} from '../../../infra/navigation/types';
+import {RegisterScreenProps} from '../../../infra/navigation/types';
 
-const LoginScreen: React.FC<LoginScreenProps> = ({navigation, route}) => {
+const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation, route}) => {
   return (
     <SafeArea>
       <Container />
@@ -11,7 +11,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation, route}) => {
   );
 };
 
-export default LoginScreen;
+export default RegisterScreen;
 
 export const SafeArea = styled(SafeAreaView)`
   flex: 2;
