@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {Alert, TextInput} from 'react-native';
 import {LoginScreenProps} from '../../../infra/navigation/types';
 import {Logo} from '../../assets/icons';
@@ -6,14 +6,14 @@ import {MyButton, MyButtonOutLined} from '../../components/MyButton';
 import MyInput from '../../components/MyInput';
 import MyScreen from '../../components/MyScreen';
 import MySpacer from '../../components/MySpacer';
+import {useLogin} from '../../hooks/useLogin/useLogin';
 import * as S from './styles';
 
 const LoginScreen: React.FC<LoginScreenProps> = ({navigation, route}) => {
   const passwordRef = useRef<TextInput | null>(null);
-
-  const handleNavigationHome = () => {
-    navigation.navigate('Profile');
-  };
+  const [cpf, setCpf] = useState('12345678911');
+  const [password, setPassword] = useState('1234');
+  const {handleLogin} = useLogin(cpf, password);
 
   const handleNavigationRegister = () => {
     navigation.navigate('Register');
@@ -28,17 +28,19 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation, route}) => {
           </S.ContainerLogo>
           <MySpacer height={50} />
           <MyInput
-            placeholder="Email"
+            placeholder="CPF"
             onEndEditing={() => passwordRef.current?.focus()}
+            onChangeText={setCpf}
           />
           <MySpacer />
-          <MyInput placeholder="Senha" ref={passwordRef} />
-          <MySpacer />
-          <MyButton
-            bgColor="pink"
-            title="Entrar"
-            onPress={handleNavigationHome}
+          <MyInput
+            placeholder="Senha"
+            ref={passwordRef}
+            onChangeText={setPassword}
+            secureTextEntry
           />
+          <MySpacer />
+          <MyButton bgColor="pink" title="Entrar" onPress={handleLogin} />
           <MySpacer height={30} />
 
           <MyButtonOutLined

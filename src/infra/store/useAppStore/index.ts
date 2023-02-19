@@ -1,43 +1,36 @@
-import {create} from 'zustand';
+import {createStore} from 'zustand/vanilla';
 import {createJSONStorage, devtools, persist} from 'zustand/middleware';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-interface IAppStore {
+export interface IAppStore {
   token: string;
   user: IUser;
-  property: IProperty;
   setToken: (token: string) => void;
   setUser: (user: IUser) => void;
-  setProperty: (token: IProperty) => void;
 }
 
-type IUser = {
-  name: string;
+export type IUser = {
+  admin: number;
+  cpf: number;
   email: string;
-  photoUrl: string;
+  id: number;
+  name: string;
+  properties: IProperty[];
 };
 
 type IProperty = {
-  unity: string;
-  address: string;
+  id: number;
+  name: string;
 };
 
-export const useAppStore = create<IAppStore>()(
+export const useAppStore = createStore<IAppStore>()(
   devtools(
     persist(
       set => ({
-        user: {
-          email: 'foo@bar.com',
-          name: 'bar',
-          photoUrl: 'http://',
-        },
-        token: '$54s4s4s4',
-        property: {address: 'rua tilango', unity: '12251'} as IProperty,
+        user: {} as IUser,
+        token: '',
         setToken(token) {
           set({token: token});
-        },
-        setProperty(property) {
-          set({property: property});
         },
         setUser(user) {
           set({user: user});

@@ -4,6 +4,7 @@ export type RootStackParamList = {
   Login: undefined;
   Register: undefined;
   Profile: undefined;
+  Preload: undefined;
 };
 
 export type LoginScreenProps = NativeStackScreenProps<
@@ -19,4 +20,9 @@ export type RegisterScreenProps = NativeStackScreenProps<
 export type ProfileScreenProps = NativeStackScreenProps<
   RootStackParamList,
   'Profile'
+>;
+
+export type PreloadScreenProps = NativeStackScreenProps<
+  RootStackParamList,
+  'Preload'
 >;
