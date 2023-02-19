@@ -1,13 +1,16 @@
 import React, {useRef, useState} from 'react';
 import {Alert, TextInput} from 'react-native';
-import {LoginScreenProps} from '../../../infra/navigation/types';
-import {Logo} from '../../assets/icons';
-import {MyButton, MyButtonOutLined} from '../../components/MyButton';
-import MyInput from '../../components/MyInput';
-import MyScreen from '../../components/MyScreen';
-import MySpacer from '../../components/MySpacer';
-import {useLogin} from '../../hooks/useLogin/useLogin';
 import * as S from './styles';
+import {useLogin} from '@src/presentation/hooks/useLogin/useLogin';
+import {LoginScreenProps} from '@src/infra/navigation/types';
+import {Logo} from '@src/presentation/assets/icons';
+import {
+  MyButton,
+  MyButtonOutLined,
+  MyInput,
+  MyScreen,
+  MySpacer,
+} from '@src/presentation/components';
 
 const LoginScreen: React.FC<LoginScreenProps> = ({navigation, route}) => {
   const passwordRef = useRef<TextInput | null>(null);

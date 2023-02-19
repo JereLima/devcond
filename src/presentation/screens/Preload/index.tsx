@@ -1,8 +1,9 @@
-import React, {useEffect, useRef} from 'react';
-import {ActivityIndicator, TextInput} from 'react-native';
-import {PreloadScreenProps} from '../../../infra/navigation/types';
-import {serviceApi, validateTokenRequest} from '../../../infra/services/api';
-import MyScreen from '../../components/MyScreen';
+import React, {useEffect} from 'react';
+import {ActivityIndicator} from 'react-native';
+import {PreloadScreenProps} from '@src/infra/navigation/types';
+import {serviceApi} from '@src/infra/services/api';
+import {MyScreen} from '@src/presentation/components';
+
 import * as S from './styles';
 
 const PreloadScreen: React.FC<PreloadScreenProps> = ({navigation, route}) => {

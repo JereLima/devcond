@@ -1,12 +1,14 @@
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import * as React from 'react';
-import {LoginScreen} from '../../presentation/screens';
-import PreloadScreen from '../../presentation/screens/Preload';
-import ProfileScreen from '../../presentation/screens/Profile';
-import RegisterScreen from '../../presentation/screens/Register';
 import {navigationRef} from './navigationRef';
 import {RootStackParamList} from './types';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {
+  LoginScreen,
+  PreloadScreen,
+  ProfileScreen,
+  RegisterScreen,
+} from '@src/presentation/screens';
 
 export default function Routes() {
   return (

@@ -1,12 +1,14 @@
 import React from 'react';
-import {RegisterScreenProps} from '../../../infra/navigation/types';
-import {MyButton} from '../../components/MyButton';
-import MyFooter from '../../components/MyFooter';
-import MyHeader from '../../components/MyHeader';
-import MyInput from '../../components/MyInput';
-import MyScreen from '../../components/MyScreen';
-import MySpacer from '../../components/MySpacer';
+import {RegisterScreenProps} from '@src/infra/navigation/types';
+
 import * as S from './styles';
+import MyInput from '@src/presentation/components/MyInput';
+import {
+  MyFooter,
+  MyHeader,
+  MyScreen,
+  MySpacer,
+} from '@src/presentation/components';
 
 const RegisterScreen: React.FC<RegisterScreenProps> = ({navigation, route}) => {
   return (

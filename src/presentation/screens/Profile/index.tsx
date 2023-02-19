@@ -1,10 +1,7 @@
 import React from 'react';
-import * as S from './styles';
-import {
-  ProfileScreenProps,
-  RegisterScreenProps,
-} from '../../../infra/navigation/types';
+import {ProfileScreenProps} from '../../../infra/navigation/types';
 import MyHeader from '../../components/MyHeader';
+import * as S from './styles';
 
 const ProfileScreen: React.FC<ProfileScreenProps> = () => {
   return (
