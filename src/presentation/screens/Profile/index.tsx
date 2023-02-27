@@ -1,13 +1,13 @@
 import React from 'react';
-import {ProfileScreenProps} from '../../../infra/navigation/types';
-import MyHeader from '../../components/MyHeader';
-import * as S from './styles';
+import {MyHeader, MyScreen} from '@src/presentation/components';
+import {ProfileScreenProps} from '@src/infra/navigation/types';
+import {useAppStore} from '@src/infra/store/useAppStore';
 
 const ProfileScreen: React.FC<ProfileScreenProps> = () => {
   return (
-    <S.Container>
+    <MyScreen>
       <MyHeader title="Inicio" />
-    </S.Container>
+    </MyScreen>
   );
 };
 

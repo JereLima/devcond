@@ -1,7 +1,6 @@
-import {createStore} from 'zustand/vanilla';
-import {createJSONStorage, devtools, persist} from 'zustand/middleware';
+import {create, createStore} from 'zustand';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import {createJSONStorage, persist} from 'zustand/middleware';
 export interface IAppStore {
   token: string;
   user: IUser;
@@ -23,23 +22,23 @@ type IProperty = {
   name: string;
 };
 
-export const useAppStore = createStore<IAppStore>()(
-  devtools(
-    persist(
-      set => ({
-        user: {} as IUser,
-        token: '',
-        setToken(token) {
-          set({token: token});
-        },
-        setUser(user) {
-          set({user: user});
-        },
-      }),
-      {
-        name: 'app-storage',
-        storage: createJSONStorage(() => AsyncStorage),
+export const useAppStore = create<IAppStore>()(
+  persist(
+    set => ({
+      user: {} as IUser,
+      token: '',
+      setToken(token) {
+        console.log(token);
+        set({token: token});
       },
-    ),
+      setUser(user) {
+        console.log(user);
+        set({user: user});
+      },
+    }),
+    {
+      name: 'app-storage-dev-cond',
+      storage: createJSONStorage(() => AsyncStorage),
+    },
   ),
 );

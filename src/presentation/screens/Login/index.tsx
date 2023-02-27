@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react';
-import {Alert, TextInput} from 'react-native';
 import * as S from './styles';
-import {useLogin} from '@src/presentation/hooks/useLogin/useLogin';
+import {Alert, Text, TextInput} from 'react-native';
+import {useLogin} from '@src/presentation/hooks/useLogin';
 import {LoginScreenProps} from '@src/infra/navigation/types';
 import {Logo} from '@src/presentation/assets/icons';
 import {
@@ -11,12 +11,17 @@ import {
   MyScreen,
   MySpacer,
 } from '@src/presentation/components';
+import {useAppStore} from '@src/infra/store/useAppStore';
+import {useFishStore} from '@src/infra/store/tStore';
 
 const LoginScreen: React.FC<LoginScreenProps> = ({navigation, route}) => {
   const passwordRef = useRef<TextInput | null>(null);
   const [cpf, setCpf] = useState('12345678911');
   const [password, setPassword] = useState('1234');
   const {handleLogin} = useLogin(cpf, password);
+
+  const token = useAppStore(state => state.token);
+  const user = useAppStore(state => state.user);
 
   const handleNavigationRegister = () => {
     navigation.navigate('Register');
@@ -25,6 +30,10 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation, route}) => {
   return (
     <MyScreen>
       <S.KeyboardAvoiding>
+        <Text>{user.name}</Text>
+        <Text>{user.email}</Text>
+        <Text>{token}</Text>
+
         <S.Container>
           <S.ContainerLogo>
             <S.Logo resizeMode="contain" source={Logo} />
@@ -51,8 +60,8 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation, route}) => {
             title="Registrar"
             onPress={handleNavigationRegister}
           />
-          <MySpacer height={30} />
-          <S.PrivacyPolicies onPress={() => Alert.alert('Teste')}>
+          {/* <MySpacer height={30} /> */}
+          <S.PrivacyPolicies onPress={() => addFishes()}>
             Politicas de privacidade
           </S.PrivacyPolicies>
         </S.Container>

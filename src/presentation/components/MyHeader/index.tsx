@@ -1,6 +1,6 @@
 import React from 'react';
 import {ArrowBendUpLeft} from 'phosphor-react-native';
-import {View, ViewProps} from 'react-native';
+import {BackHandler, View, ViewProps} from 'react-native';
 
 import * as S from './styles';
 import {useNavigation} from '@react-navigation/native';
@@ -12,7 +12,11 @@ type MyHeaderProps = {
 const MyHeader: React.FC<MyHeaderProps> = ({title}) => {
   const navigation = useNavigation();
   const goBack = () => {
-    navigation.goBack();
+    if (navigation.getState().routes.length === 0) {
+      navigation.goBack();
+    } else {
+      BackHandler.exitApp(); // a previous screen does exist
+    }
   };
 
   return (
