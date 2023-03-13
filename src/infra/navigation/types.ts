@@ -6,6 +6,9 @@ export type RootStackParamList = {
   Profile: undefined;
   Preload: undefined;
   SelectProperty: undefined;
+  //Drawer
+  Drawer: undefined;
+  Wall: undefined;
 };
 
 export type LoginScreenProps = NativeStackScreenProps<
@@ -31,4 +34,9 @@ export type PreloadScreenProps = NativeStackScreenProps<
 export type SelectPropertyProps = NativeStackScreenProps<
   RootStackParamList,
   'SelectProperty'
+>;
+
+export type WallScreenProps = NativeStackScreenProps<
+  RootStackParamList,
+  'Wall'
 >;

@@ -48,7 +48,12 @@ const SelectProperty: React.FC<SelectPropertyProps> = ({navigation, route}) => {
           keyExtractor={item => item.name}
           ItemSeparatorComponent={() => <MySpacer />}
         />
-        {selectedProperty.name && <MyButton title="Fechar" />}
+        {selectedProperty.name && (
+          <MyButton
+            onPress={() => navigation.navigate('Drawer')}
+            title="Fechar"
+          />
+        )}
       </S.Content>
     </MyScreen>
   );
