@@ -15,7 +15,7 @@ const MyHeader: React.FC<MyHeaderProps> = ({title}) => {
     if (navigation.getState().routes.length === 0) {
       navigation.goBack();
     } else {
-      BackHandler.exitApp(); // a previous screen does exist
+      BackHandler.exitApp();
     }
   };
 

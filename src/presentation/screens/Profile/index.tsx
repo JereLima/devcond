@@ -1,12 +1,16 @@
 import React from 'react';
-import {MyHeader, MyScreen} from '@src/presentation/components';
+import {ActivityIndicator} from 'react-native';
 import {ProfileScreenProps} from '@src/infra/navigation/types';
-import {useAppStore} from '@src/infra/store/useAppStore';
+import {MyButton, MyHeader, MyScreen} from '@src/presentation/components';
+import {useLogout} from '@src/presentation/hooks/useLogout';
 
 const ProfileScreen: React.FC<ProfileScreenProps> = () => {
+  const {handleLogout, loading} = useLogout();
   return (
     <MyScreen>
       <MyHeader title="Inicio" />
+      <MyButton onPress={handleLogout} title="Sair" />
+      {loading && <ActivityIndicator />}
     </MyScreen>
   );
 };

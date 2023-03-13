@@ -1,18 +1,9 @@
-import axios, {AxiosError, AxiosResponse} from 'axios';
-import {IUser, useAppStore} from '../store/useAppStore';
-import {} from 'zustand';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios, {AxiosError} from 'axios';
+import {IUser} from '@src/infra/store/useAppStore';
+import {KeysLocalStorage} from '../utils/keysLocalStorage';
+import {storageLocal} from '@src/infra/utils/storageLocal';
 
 const baseUrl = 'https://api.b7web.com.br/devcond/api';
-
-const getTokenStorage = async () => {
-  try {
-    const response = await AsyncStorage.getItem('@token');
-    return response;
-  } catch (e) {
-    console.log('error reading token');
-  }
-};
 
 const Api = axios.create({
   baseURL: baseUrl,
@@ -23,26 +14,24 @@ const Api = axios.create({
 
 Api.interceptors.request.use(
   async config => {
-    const token = await AsyncStorage.getItem('token');
+    const token = await storageLocal.getItem(KeysLocalStorage.TOKEN);
     if (token) {
-      config.headers.Authorization = 'Bearer ' + token;
+      config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
-  error => {
-    return Promise.reject(error);
-  },
+  error => Promise.reject(error),
 );
 
 export const validateTokenRequest = async (): Promise<any | undefined> => {
   try {
+    const token = await storageLocal.getItem(KeysLocalStorage.TOKEN);
     const response = await Api.post('/auth/validate', {
-      token: await getTokenStorage(),
+      token,
     });
     return response.data;
   } catch (error) {
-    console.log('Errou?', error);
-
+    console.log('Errou?', JSON.stringify(error));
     return undefined;
   }
 };
@@ -104,8 +93,23 @@ export const registerRequest = async ({
   }
 };
 
+type LogoutResponse = {
+  error: '';
+};
+export const logoutRequest = async (): Promise<LogoutResponse | undefined> => {
+  try {
+    const token = await storageLocal.getItem(KeysLocalStorage.TOKEN);
+    const {data} = await Api.post('/auth/logout', {token});
+    return data;
+  } catch (error) {
+    const {message} = error as AxiosError;
+    throw new Error(message);
+  }
+};
+
 export const serviceApi = {
   validateTokenRequest,
   loginRequest,
   registerRequest,
+  logoutRequest,
 };

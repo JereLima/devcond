@@ -1,8 +1,5 @@
-import React, {useRef, useState} from 'react';
-import * as S from './styles';
-import {Alert, Text, TextInput} from 'react-native';
-import {useLogin} from '@src/presentation/hooks/useLogin';
 import {LoginScreenProps} from '@src/infra/navigation/types';
+import {useAppStore} from '@src/infra/store/useAppStore';
 import {Logo} from '@src/presentation/assets/icons';
 import {
   MyButton,
@@ -11,8 +8,10 @@ import {
   MyScreen,
   MySpacer,
 } from '@src/presentation/components';
-import {useAppStore} from '@src/infra/store/useAppStore';
-import {useFishStore} from '@src/infra/store/tStore';
+import {useLogin} from '@src/presentation/hooks/useLogin';
+import React, {useRef, useState} from 'react';
+import {Text, TextInput} from 'react-native';
+import * as S from './styles';
 
 const LoginScreen: React.FC<LoginScreenProps> = ({navigation, route}) => {
   const passwordRef = useRef<TextInput | null>(null);
@@ -20,7 +19,6 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation, route}) => {
   const [password, setPassword] = useState('1234');
   const {handleLogin} = useLogin(cpf, password);
 
-  const token = useAppStore(state => state.token);
   const user = useAppStore(state => state.user);
 
   const handleNavigationRegister = () => {
@@ -32,7 +30,6 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation, route}) => {
       <S.KeyboardAvoiding>
         <Text>{user.name}</Text>
         <Text>{user.email}</Text>
-        <Text>{token}</Text>
 
         <S.Container>
           <S.ContainerLogo>

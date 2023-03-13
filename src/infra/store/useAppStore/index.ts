@@ -28,11 +28,9 @@ export const useAppStore = create<IAppStore>()(
       user: {} as IUser,
       token: '',
       setToken(token) {
-        console.log(token);
         set({token: token});
       },
       setUser(user) {
-        console.log(user);
         set({user: user});
       },
     }),
