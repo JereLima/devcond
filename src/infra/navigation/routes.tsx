@@ -8,6 +8,7 @@ import {
   PreloadScreen,
   ProfileScreen,
   RegisterScreen,
+  SelectPropertyScreen,
 } from '@src/presentation/screens';
 
 export default function Routes() {
@@ -27,6 +28,7 @@ export const StackRoutes = () => {
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
       <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen name="SelectProperty" component={SelectPropertyScreen} />
     </Stack.Navigator>
   );
 };
