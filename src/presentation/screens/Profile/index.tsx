@@ -1,16 +1,21 @@
 import React from 'react';
-import * as S from './styles';
-import {
-  ProfileScreenProps,
-  RegisterScreenProps,
-} from '../../../infra/navigation/types';
-import MyHeader from '../../components/MyHeader';
+import {ActivityIndicator} from 'react-native';
+import {ProfileScreenProps} from '@src/infra/navigation/types';
+import {MyButton, MyHeader, MyScreen} from '@src/presentation/components';
+import {useLogout} from '@src/presentation/hooks/useLogout';
 
-const ProfileScreen: React.FC<ProfileScreenProps> = () => {
+const ProfileScreen: React.FC<ProfileScreenProps> = ({navigation}) => {
+  const {handleLogout, loading} = useLogout();
+
   return (
-    <S.Container>
+    <MyScreen>
       <MyHeader title="Inicio" />
-    </S.Container>
+      <MyButton
+        onPress={() => navigation.navigate('SelectProperty')}
+        title="Sair"
+      />
+      {loading && <ActivityIndicator />}
+    </MyScreen>
   );
 };
 

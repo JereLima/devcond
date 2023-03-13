@@ -7,6 +7,11 @@
       "cypress",
       "@testing-library/cypress",
       "@types/styled-components-react-native"
-    ]
+    ],
+    "baseUrl": "./",
+    "paths": {
+      "@src/*": ["src/*"],
+      "@components/*": ["src/presentation/components/*"]
+    }
   }
 }
